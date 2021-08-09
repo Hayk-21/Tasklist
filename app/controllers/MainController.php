@@ -7,15 +7,20 @@ use app\lib\Pagination;
 
   class MainController extends Controller {
 
-    public $sort;
-
     public function indexAction() {
-        if(!empty($_POST['sort'])) {
+        if(!empty($_POST['sort']))
           $_SESSION['sort'] = $_POST['sort'];
-        }
+
         $pageID = $this->getID();
-        if (!$pageID) $pageID = 1;
+
+        if (!$pageID)
+          $pageID = 1;
+
         $pagination = new Pagination($this->route, $pageID, ($this->model->taskCount())/3, 1);
+
+        if(!isset($_SESSION['sort']))
+          $_SESSION['sort'] = [''];
+
         $vars = [
           'pagination' => $pagination->get(),
           'list' => $this->model->taskList($pageID, $_SESSION['sort'][0]),

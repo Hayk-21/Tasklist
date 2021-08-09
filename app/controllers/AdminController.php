@@ -31,7 +31,11 @@ use app\lib\DB;
         $this->view->message('id is not exists.');
       }
       if(!empty($_POST)) {
-        if(!$this->model->taskValidate($_POST, 'edit')) {
+        if (isset($_POST['status']) && ($_POST['status'] == 'Done' || $_POST['status'] == 'NotDone')) {
+          $this->model->statusEdit($_POST, $this->getID());
+          $this->view->message('Status successfully changed');
+          $this->view->redirect('/');
+        } elseif (!$this->model->taskValidate($_POST, 'edit')) {
           $this->view->message($this->model->error);
         } else {
           $this->model->taskEdit($_POST, $this->getID());

@@ -62,6 +62,15 @@ class Admin extends Model {
     $this->db->query('UPDATE tasks SET name = :name, email = :email, task = :task, edited = :edited, status = :status WHERE id = :id', $params);
   }
 
+  public function statusEdit($post, $id) {
+    $post['status'] == 'Done' ? $post['status'] = '0' : $post['status'] = '1';
+    $params = [
+      'id' => $id,
+      'status' => $post['status'],
+    ];
+    $this->db->query('UPDATE tasks SET status = :status WHERE id = :id', $params);
+  }
+
   public function deleteTask($id) {
     $params = [
       'id' => $id,

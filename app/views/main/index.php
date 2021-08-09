@@ -27,13 +27,25 @@
               <div class="col-sm-4">
                 Email: <b><?php echo htmlspecialchars($val['email'], ENT_QUOTES);?></b>
               </div>
+              <?php if(isset($_SESSION['admin'])): ?>
+              <form action="/admin/edit/<?php echo $val['id'];?>" class="col-sm-2" method="post">
+                <div class="form-check form-switch">
+                  <?php if ($val['status'] == '1'): ?>
+                  <input class="btn btn-success status" name="status" value="Done" type="submit" id="submit">
+                <?php else: ?>
+                  <input class="btn border border-warning text-warning status" name="status" value="NotDone" type="submit" id="submit">
+                <?php endif ?>
+                </div>
+              </form>
+              <?php else: ?>
               <div class="col-sm-2">
                 <?php if($val['status']): ?>
-                Status: <b class="text-success">Done</b>
-              <?php else: ?>
-                Status: <b class="text-warning">Not done</b>
-              <?php endif ?>
+                  Status: <b class="text-success">Done</b>
+                <?php else: ?>
+                  Status: <b class="text-warning">Not done</b>
+                <?php endif ?>
               </div>
+            <?php endif ?>
               <?php if (isset($_SESSION['admin'])): ?>
               <div class="col-sm-2">
                 <small><a href="/admin/edit/<?php echo $val['id'] ?>"  class="btn btn-success">Edit</a></small>
@@ -88,3 +100,12 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  function changingFunc(id, status) {
+    $.ajax({
+      type: "POST",
+      url: "/admin/edit/" + id,
+      data: {status : status},
+    });
+  }
+</script>

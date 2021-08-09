@@ -9,7 +9,7 @@
   <div class="row mt-2 text-white">
     <h2><?php echo $title?></h2>
   </div>
-<form class="" action="/admin/edit/<?php echo $data['id'];?>" method="post">
+  <form class="" action="/admin/edit/<?php echo $data['id'];?>" method="post">
   <div class="row mt-4">
     <div class="col-sm-5 bg-primary border border-primary rounded p-3">
         <div class="input-group mb-3">
