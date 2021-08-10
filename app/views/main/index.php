@@ -29,7 +29,8 @@
               </div>
               <?php if(isset($_SESSION['admin'])): ?>
               <form action="/admin/edit/<?php echo $val['id'];?>" class="col-sm-2" method="post">
-                <div class="form-check form-switch">
+                <div>
+                  <span class="h6">Status :</span>
                   <?php if ($val['status'] == '1'): ?>
                   <input class="btn btn-success status" name="status" value="Done" type="submit" id="submit">
                 <?php else: ?>
@@ -76,15 +77,30 @@
           Sort by
         </div>
 
-
-        <input type="submit" class="btn-check" name="sort[]" value="name" id="btn-name" autocomplete="off" checked>
+        <input type="radio" class="btn-check" name="sort" value="name" id="btn-name" autocomplete="off" <?php echo ($_SESSION['sort'] == 'name') ? "checked" : " "?>>
         <label class="btn btn-outline-primary col-sm-12 mb-2 text-white" for="btn-name">Name</label>
 
-        <input type="submit" class="btn-check" name="sort[]" value="email" id="btn-email" autocomplete="off">
+        <input type="radio" class="btn-check" name="sort" value="email" id="btn-email" autocomplete="off" <?php echo ($_SESSION['sort'] == 'email') ? "checked" : " "?>>
         <label class="btn btn-outline-primary col-sm-12 mb-2 text-white" for="btn-email">Email</label>
 
-        <input type="submit" class="btn-check" name="sort[]" value="status" id="btn-status" autocomplete="off">
+        <input type="radio" class="btn-check" name="sort" value="status" id="btn-status" autocomplete="off" <?php echo ($_SESSION['sort'] == 'status') ? "checked" : " "?>>
         <label class="btn btn-outline-primary col-sm-12 mb-2 text-white" for="btn-status">Status</label>
+
+        <div class="co-sm-12 text-white mt-2 mb-2">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="checkbox" value="1" id="flexRadioDefault1" <?php echo ($_SESSION['checkbox'] == '1') ? "checked" : " "?>>
+            <label class="form-check-label" for="flexRadioDefault1">
+              Descending
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="checkbox" value="0" id="flexRadioDefault2" <?php echo ($_SESSION['checkbox'] == '0') ? "checked" : " "?>>
+            <label class="form-check-label" for="flexRadioDefault2">
+              Ascending
+            </label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-success col-sm-12" name="button">Apply</button>
       </form>
   </div>
 

@@ -45,14 +45,18 @@ class Main extends Model {
     return $this->db->column('SELECT COUNT(id) FROM tasks');
   }
 
-  public function taskList($id, $sort) {
+  public function taskList($id, $sort, $type) {
+    if($type)
+      $type = 'DESC';
+    else
+      $type = 'ASC';
     if(empty($sort)) $sort = 'id';
     $max = 3;
     $params = [
       'max' => $max,
 			'start' => ((($id ?? 1) - 1) * $max),
     ];
-    return $this->db->row('SELECT * FROM tasks ORDER BY '.$sort.' LIMIT :start, :max', $params);
+    return $this->db->row('SELECT * FROM tasks ORDER BY '.$sort.' '.$type.' LIMIT :start, :max', $params);
   }
 }
 

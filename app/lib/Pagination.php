@@ -37,7 +37,7 @@ class Pagination {
                 $links = $this->generateHtml(1, '<').$links;
             }
             if ($this->current_page < $this->amount) {
-                $links .= $this->generateHtml($this->amount, 'Next');
+                $links .= $this->generateHtml($this->amount, '>');
             }
         }
         $html .= $links.' </ul></nav>';

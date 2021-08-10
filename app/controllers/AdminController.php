@@ -59,6 +59,7 @@ use app\lib\DB;
         $this->view->message('task is not exists.');
       } else {
         $this->model->deleteTask($this->getID());
+        $this->view->message('Task deleted successfully!');
       }
       $this->view->redirect('/');
     }
