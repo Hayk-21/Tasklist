@@ -13,8 +13,7 @@ abstract class Controller {
   public function __construct($route) {
     $this->route = $route;
     if (!$this->checkAccess()) {
-      echo "Eroor 403";
-      exit();
+      echo "<script>window.location.href='/admin/login/';</script>";;
     }
     $this->view = new View($route);
     $this->model = $this->loadModel($route['controller']);
