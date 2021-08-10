@@ -90,13 +90,13 @@
           <div class="form-check">
             <input class="form-check-input" type="radio" name="checkbox" value="1" id="flexRadioDefault1" <?php echo ($_SESSION['checkbox'] == '1') ? "checked" : " "?>>
             <label class="form-check-label" for="flexRadioDefault1">
-              Descending
+              DESC
             </label>
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="checkbox" value="0" id="flexRadioDefault2" <?php echo ($_SESSION['checkbox'] == '0') ? "checked" : " "?>>
             <label class="form-check-label" for="flexRadioDefault2">
-              Ascending
+              ASC
             </label>
           </div>
         </div>
