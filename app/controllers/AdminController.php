@@ -37,10 +37,12 @@ use app\lib\DB;
           $this->view->redirect('/');
         } elseif (!$this->model->taskValidate($_POST, 'edit')) {
           $this->view->message($this->model->error);
-        } else {
+        } elseif($this->model->isTaskChanged($_POST, $this->getID())) {
           $this->model->taskEdit($_POST, $this->getID());
           $this->view->message('Task successfully edited');
           $this->view->redirect('/');
+        } else {
+          $this->view->message('Task is not edited');
         }
       }
       $taskdata = $this->model->taskData($this->getID());

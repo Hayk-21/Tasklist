@@ -45,6 +45,22 @@ class Admin extends Model {
     return $this->db->row('SELECT * FROM tasks WHERE id = :id', $params);
   }
 
+  public function isTaskChanged($post, $id) {
+    if(isset($post['status']))
+      $post['status'] = 1;
+    else
+      $post['status'] = 0;
+
+    $params = [
+      'id' => $id,
+    ];
+    $data = $this->db->row('SELECT * FROM tasks WHERE id = :id', $params);
+    if($post['name'] == $data[0]['name'] && $post['email'] == $data[0]['email'] && $post['task'] == $data[0]['task'] && $post['status'] == $data[0]['status'])
+      return false;
+
+    return true;
+  }
+
   public function taskEdit($post, $id) {
     if(isset($post['status'])) {
       $post['status'] = 1;
