@@ -10,8 +10,11 @@ use app\lib\Pagination;
     public function indexAction() {
         if(!empty($_POST['sort'])) {
           $_SESSION['sort'] = $_POST['sort'];
-          $_SESSION['checkbox'] = $_POST['checkbox'];
         }
+        if(!empty($_POST['checkbox']))
+          $_SESSION['checkbox'] = $_POST['checkbox'];
+        else
+          $_SESSION['checkbox'] = '0';
 
         $pageID = $this->getID();
         if (!$pageID)
@@ -21,8 +24,6 @@ use app\lib\Pagination;
 
         if(!isset($_SESSION['sort']))
           $_SESSION['sort'] = '';
-        if(!isset($_SESSION['checkbox']))
-          $_SESSION['checkbox'] = '0';
 
         $vars = [
           'pagination' => $pagination->get(),
